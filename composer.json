@@ -1,5 +1,7 @@
 {
     "name": "avallac/php-slidebox-client",
+    "license": "MIT",
+    "description": "",
     "minimum-stability": "dev",
     "authors": [
         {
