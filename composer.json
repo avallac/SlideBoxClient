@@ -1,5 +1,6 @@
 {
     "name": "avallac/php-slidebox-client",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Petr Petrenko",
