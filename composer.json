@@ -1,0 +1,12 @@
+{
+    "name": "avallac/php-slidebox-client",
+    "authors": [
+        {
+            "name": "Petr Petrenko",
+            "email": "mail@avallac.ru"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "PhpSlideBoxClient\\": "/" }
+    }
+}
