@@ -1,5 +1,5 @@
 {
-    "name": "avallac/SlideBoxClient",
+    "name": "avallac/slidebox-client",
     "license": "MIT",
     "description": "tcp client for SlideBox",
     "authors": [
