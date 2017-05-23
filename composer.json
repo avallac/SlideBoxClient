@@ -1,8 +1,7 @@
 {
-    "name": "avallac/php-slidebox-client",
+    "name": "avallac/SlideBoxClient",
     "license": "MIT",
-    "description": "",
-    "minimum-stability": "dev",
+    "description": "tcp client for SlideBox",
     "authors": [
         {
             "name": "Petr Petrenko",
@@ -14,7 +13,7 @@
     },
     "autoload": {
         "psr-0": {
-            "PhpSlideBoxClient": "src/"
+            "Dexter\\PhpSlideBoxClient": ""
         }
     }
 }

@@ -1,1 +1,1 @@
-# php-slidebox-client
+# SlideBoxClient

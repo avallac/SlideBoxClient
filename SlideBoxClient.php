@@ -1,8 +1,8 @@
 <?php
 
-namespace PhpSlideBoxClient;
+namespace Dexter\SlideBoxClient;
 
-class PhpSlideBoxClient
+class SlideBoxClient
 {
     const COMMAND_SEARCH = 20;
     const COMMAND_INSERT = 30;
