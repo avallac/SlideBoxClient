@@ -28,11 +28,18 @@ class SlideBoxClient
         foreach ($descriptions as $e) {
             $message .= $e;
         }
-        socket_write($this->socket, $message, strlen($message));
-        $head = socket_read($this->socket, 4);
+        if (socket_write($this->socket, $message, strlen($message)) === false) {
+            throw new \Exception(socket_strerror(socket_last_error($this->socket)));
+        }
+        if (($head = socket_read($this->socket, 4)) === '') {
+            throw new \Exception('Bad data');
+        }
         $size = unpack("L", $head)[1];
         for ($i = 0; $i < $size; $i++) {
-            $out = unpack("Lid/Lcount", socket_read($this->socket, 8));
+            if (($tmp = socket_read($this->socket, 8)) === '') {
+                throw new \Exception('Bad data');
+            }
+            $out = unpack("Lid/Lcount", $tmp);
             $return[$out['id']] = $out['count'];
         }
         return $return;
@@ -44,8 +51,13 @@ class SlideBoxClient
         foreach ($descriptions as $e) {
             $message .= $e;
         }
-        socket_write($this->socket, $message, strlen($message));
-        $count = unpack("Q", socket_read($this->socket, 8))[1];
+        if (socket_write($this->socket, $message, strlen($message)) === false) {
+            throw new \Exception(socket_strerror(socket_last_error($this->socket)));
+        }
+        if (($tmp = socket_read($this->socket, 8)) === '') {
+            throw new \Exception('Bad data');
+        }
+        $count = unpack("Q", $tmp)[1];
         return $count;
     }
 }
