@@ -54,7 +54,8 @@ class SlideBoxClient
         if (socket_write($this->socket, $message, strlen($message)) === false) {
             throw new \Exception(socket_strerror(socket_last_error($this->socket)));
         }
-        if (($tmp = socket_read($this->socket, 8)) === '') {
+        $tmp = socket_read($this->socket, 8);
+        if ($tmp === '' || $tmp === null) {
             throw new \Exception('Bad data');
         }
         $count = unpack("Q", $tmp)[1];
