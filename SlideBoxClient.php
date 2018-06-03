@@ -31,12 +31,12 @@ class SlideBoxClient
         if (socket_write($this->socket, $message, strlen($message)) === false) {
             throw new \Exception(socket_strerror(socket_last_error($this->socket)));
         }
-        if (($head = socket_read($this->socket, 4)) === '') {
+        if (socket_recv($this->socket, $head, 4, MSG_WAITALL) !== 4) {
             throw new \Exception('Bad data');
         }
         $size = unpack("L", $head)[1];
         for ($i = 0; $i < $size; $i++) {
-            if (($tmp = socket_read($this->socket, 8)) === '') {
+            if (socket_recv($this->socket, $tmp, 8, MSG_WAITALL) !== 8) {
                 throw new \Exception('Bad data');
             }
             $out = unpack("Lid/Lcount", $tmp);
@@ -54,8 +54,7 @@ class SlideBoxClient
         if (socket_write($this->socket, $message, strlen($message)) === false) {
             throw new \Exception(socket_strerror(socket_last_error($this->socket)));
         }
-        $tmp = socket_read($this->socket, 8);
-        if ($tmp === '' || $tmp === false) {
+        if (socket_recv($this->socket, $tmp, 8, MSG_WAITALL) !== 8) {
             throw new \Exception('Bad data');
         }
         $count = unpack("Q", $tmp)[1];
